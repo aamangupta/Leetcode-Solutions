@@ -60,32 +60,53 @@ class Main {
 class Solution
 {
     //Function to return list containing vertices in Topological order. 
-    static void helper(ArrayList<ArrayList<Integer>> graph, boolean[]vis, Stack<Integer> st, int v){
-        vis[v] = true;
-        
-        for(int i : graph.get(v)){
-            if(vis[i] == false){
-                helper(graph, vis, st, i);
-            }
-        }
-        st.push(v);
-    }
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
         // add your code here
-        Stack<Integer> st = new Stack<>();
-        boolean vis[] = new boolean[V];
-        int j = 0;
+        int indeg[] = new int[V];
         for(int i = 0; i < V; i++){
-            if(vis[i] == false){
-                helper(adj, vis, st, i);
+            for(int j : adj.get(i)){
+                indeg[j]++;
             }
         }
-        int []ans = new int[st.size()];
-        while(st.size() > 0){
-            ans[j] = st.pop();
-            j++;
+        int arr[] = new int[V], a = 0;
+        Queue<Integer> q = new ArrayDeque<>();
+        for(int i = 0; i < V; i++){
+            if(indeg[i] == 0){
+                q.add(i);
+                // arr[a] = i;
+                // a++;
+            } 
+        
+            
         }
-        return ans;
+        
+        while(q.size() > 0){
+            int rem = q.remove();
+            arr[a] = rem;
+            a++;
+            for(int i : adj.get(rem)){
+                indeg[i]--;
+                if(indeg[i] == 0){
+                    q.add(i);    
+                }
+            }
+        }
+        return arr;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
