@@ -1,39 +1,24 @@
 class Solution {
-    public class pair{
-        int src;
-        int lev;
-        pair(int src, int lev){
-            this.src = src;
-            this.lev = lev;
+    public boolean helper(int i, int [][]graph, int[]colors, int color){
+        if(colors[i] != 0){
+            if(colors[i] != color) return false;
+            else return true;
         }
-    }
-    public boolean check(int src, int [][]graph, int[]vis, Queue<pair> q){
-        q.add(new pair(src,0));
-        while(q.size() > 0){
-            pair rem = q.remove();
-            int s = rem.src;
-            int lev = rem.lev;
-            
-            if(vis[s] != -1 && vis[s] != lev) return false;
-            vis[s] = lev;
-            
-            for(int i : graph[s]){
-                if(vis[i] == -1)
-                q.add(new pair(i, lev + 1));
-            }
+        
+        colors[i] = color;
+        for(int it : graph[i]){
+            boolean ch = helper(it, graph, colors, -color);
+            if(ch == false) return false;
         }
         return true;
     }
     public boolean isBipartite(int[][] graph) {
-        
-        int n = graph.length;
-        int []vis = new int[n];
-        Arrays.fill(vis, -1);
-        Queue<pair> q = new ArrayDeque<>();
-        boolean ch = false;
+        int n = graph.length, color[] = new int[n];
         for(int i = 0; i < n; i++){
-            if(vis[i] == -1) ch = check(i, graph, vis, q);
-            if(ch == false) return false;
+            if(color[i] == 0){
+                boolean ch = helper(i, graph, color, 1);
+                if(!ch) return false;
+            }
         }
         return true;
     }
