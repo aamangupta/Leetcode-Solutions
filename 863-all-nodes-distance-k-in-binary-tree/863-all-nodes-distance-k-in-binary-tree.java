@@ -18,6 +18,8 @@ class Solution {
 //             kLevelDown(n2rpath.get(i), warn, k, i, list);
 //         }
 //         return list;
+        
+        // without using xtra spce
         helper(root, target, k, list);
         return list;
     }
