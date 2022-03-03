@@ -1,20 +1,16 @@
 class Solution {
     public int numberOfArithmeticSlices(int[] nums) {
+        // using DP
+        // dp[i] contains the number of slices ending at index i.
         int n = nums.length;
         if(n < 3) return 0;
         int ans = 0;
-        for(int i = 0; i < n - 2; i++){
-            int j = i + 1;
-            int diff = nums[j] - nums[i];
-            j++;
-            while(j < n){
-                int currDiff = nums[j] - nums[j - 1];
-                if(currDiff != diff) break;
-                else{
-                    if((j - i + 1) >= 3) ans++;
-                    j++;
-                }
-            }
+        int dp = 0;
+        for(int i = 2; i < n; i++){
+            if(nums[i - 1] - nums[i - 2] == nums[i] - nums[i - 1]){
+                dp++;
+                ans += dp;
+            }else dp = 0;
         }
         return ans;
     }
