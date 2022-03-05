@@ -1,14 +1,16 @@
 class Solution {
+    public int helper(int []nums, int n, int[]dp){
+        if(n < 0) return 0;
+        if(dp[n] != -1) return dp[n];
+        
+        int ans = Math.max(helper(nums, n - 1, dp), nums[n] + helper(nums, n - 2, dp));
+        dp[n] = ans;
+        return ans;
+    }
     public int rob(int[] nums) {
         int n = nums.length;
-        int no = 0, yes = nums[0];
-        for(int i = 1; i < n; i++){
-            int nno = Math.max(no, yes);
-            int nyes = no + nums[i];
-            
-            no = nno;
-            yes = nyes;
-        }
-        return Math.max(no, yes);
+        int dp[] = new int[n];
+        Arrays.fill(dp, -1);
+        return helper(nums, n - 1, dp);
     }
 }
