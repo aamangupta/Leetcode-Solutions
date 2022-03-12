@@ -23,7 +23,7 @@ class Solution {
             }
         }
         int max = Math.max(maxl, maxr);
-        if(flag) return Math.max(max, 0);
+        // if(flag) return Math.max(max, 0);
         return max;
     }
 }
