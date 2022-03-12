@@ -6,7 +6,6 @@ class Solution {
             maxl = Math.max(maxl, prod);
             if(prod == 0){
                 prod = 1;
-                continue;
             }
         }
         prod = 1;
@@ -16,7 +15,6 @@ class Solution {
             maxr = Math.max(maxr, prod);
             if(prod == 0){
                 prod = 1;
-                continue;
             }
         }
         int max = Math.max(maxl, maxr);
