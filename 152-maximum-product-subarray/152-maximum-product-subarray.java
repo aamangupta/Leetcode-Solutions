@@ -1,13 +1,11 @@
 class Solution {
     public int maxProduct(int[] nums) {
         int prod = 1, maxl = nums[0], n = nums.length;
-        boolean flag = false;
         for(int i : nums){
             prod *= i;
             maxl = Math.max(maxl, prod);
             if(prod == 0){
                 prod = 1;
-                flag = true;
                 continue;
             }
         }
@@ -18,12 +16,10 @@ class Solution {
             maxr = Math.max(maxr, prod);
             if(prod == 0){
                 prod = 1;
-                flag = true;
                 continue;
             }
         }
         int max = Math.max(maxl, maxr);
-        // if(flag) return Math.max(max, 0);
         return max;
     }
 }
