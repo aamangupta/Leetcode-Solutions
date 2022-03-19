@@ -32,9 +32,7 @@ class FreqStack {
             maxfreq--;
         }
         
-        int f = freq.get(val);
-        if(f == 1) freq.remove(val);
-        else freq.put(val, f - 1);
+        freq.put(val, freq.get(val) - 1);
         return val;
     }
 }
