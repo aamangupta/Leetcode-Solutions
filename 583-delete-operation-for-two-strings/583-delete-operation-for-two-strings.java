@@ -17,6 +17,9 @@ class Solution {
         return max;
     }
     public int minDistance(String word1, String word2) {
+        
+        // ---- simply findign lcs and subtracting both string lenghts with lcs----
+        
         int lcs = longestCommonSubsequence(word1, word2);
         return word1.length() - lcs + word2.length() - lcs;
     }
