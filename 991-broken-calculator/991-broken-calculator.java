@@ -5,8 +5,18 @@ class Solution {
         // for base cond. if(st >= tar) opr will only be to dec tar until it is eq to start
         // so reutrn st - tar;
         
-        if(st >= tar) return st - tar;
-        if(tar % 2 == 1) return 1 + brokenCalc(st , tar + 1);
-        else return 1 + brokenCalc(st, tar / 2);
+        // if(st >= tar) return st - tar;
+        // if(tar % 2 == 1) return 1 + brokenCalc(st , tar + 1);
+        // else return 1 + brokenCalc(st, tar / 2);
+        
+        
+        //(itratively)
+        int opr = 0;
+        while(tar > st){
+            opr++;
+            if(tar % 2 == 1) tar += 1;
+            else tar = tar / 2;
+        }
+        return opr + st - tar;
     }
 }
