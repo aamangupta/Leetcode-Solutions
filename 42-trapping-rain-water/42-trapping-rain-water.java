@@ -1,18 +1,18 @@
 class Solution {
     public int trap(int[] height) {
-        int n = height.length, ans = 0;
-        for(int i = 1; i < n; i++){
-            int max1 = 0, max2 = 0;
-            for(int j = 0; j < i; j++){
-                max1 = Math.max(max1, height[j]);
+        int n = height.length;
+        int l = 0, r = n-1, lmax = height[l], rmax = height[r], ans = 0;
+        while(l < r){
+            int hl = height[l], rl = height[r];
+            if(hl <= rl){
+                if(hl >= lmax) lmax = Math.max(lmax, hl);
+                else ans += (lmax - hl);
+                l++;
+            }else{
+                if(rl >= rmax) rmax = Math.max(rl, rmax);
+                else ans += (rmax - rl);
+                r--;
             }
-            for(int j = i + 1; j < n; j++){
-                max2 = Math.max(max2, height[j]);
-            }
-            max1 = Math.min(max1, max2);
-            if(max1 == 0) continue;
-            int diff = max1 - height[i];
-            ans = diff < 0 ? ans : ans + (diff);
         }
         return ans;
     }
