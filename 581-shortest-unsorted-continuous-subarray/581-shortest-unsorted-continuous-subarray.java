@@ -1,18 +1,36 @@
 class Solution {
+    public class pair{
+        int idx , val;
+        pair(int val, int idx){
+            this.val = val;
+            this.idx = idx;
+        }
+    }
     public int findUnsortedSubarray(int[] nums) {
-        // brute : nlong
-        int n = nums.length, arr[] = new int[n];
+        Stack<pair> st = new Stack<>();
+        int n = nums.length, start = n-1, end = -1;
         for(int i = 0; i < n; i++){
-            arr[i] = nums[i];
+            int val = nums[i];
+            if(st.size() > 0 && st.peek().val > val){
+                while(st.size() > 0 && st.peek().val > val){
+                    start = Math.min(start, st.pop().idx);
+                }
+                // break;
+            }else st.push(new pair(val, i));
         }
+        st = new Stack<>();
         
-        Arrays.sort(arr);
-        int i1 = -1, i2 = -1;
-        for(int i = 0; i < n; i++){
-            if(i1 == -1 && arr[i] != nums[i]) i1 = i;
-            else if(arr[i] != nums[i]) i2 = i;
+        for(int i = n - 1; i >= 0; i--){
+            int val = nums[i];
+            if(st.size() > 0 && st.peek().val < val){
+                while(st.size() > 0 && st.peek().val < val){
+                    end = Math.max(end, st.pop().idx);
+                }
+                // break;
+            }else st.push(new pair(val, i));
         }
-        if(i1 == -1 && i2 == -1) return 0;
-        else return i2 - i1 + 1;
+        // System.out.println(start + " " + end);
+        if(start == n - 1) return 0;
+        return end - start + 1;
     }
 }
