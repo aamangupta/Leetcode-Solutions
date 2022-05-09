@@ -1,10 +1,8 @@
 class Solution {
     HashMap<Character, String> map;
     public void helper(String digits, int k, String str, List<String> ans, HashMap<Character, String> map){
-        if(k > digits.length()) return;
         if(str.length() == digits.length()){
             ans.add(str);
-            // System.out.println(str);
             return;
         }
         
