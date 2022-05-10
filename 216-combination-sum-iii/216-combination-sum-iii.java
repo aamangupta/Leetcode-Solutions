@@ -4,7 +4,7 @@ class Solution {
             ans.add(new ArrayList(list));
             return;
         }
-        if(list.size() == k) return;
+        if(list.size() == k && sum != k) return;
         
         for(int i = st + 1; i <= 9; i++){
             list.add(i);    
