@@ -19,6 +19,7 @@ class Solution {
             if(vis[rem[0]]) continue;
             time = rem[1];
             vis[rem[0]] = true;
+            n--;
             for(int i[] : graph.get(rem[0])){
                 int u = i[0];
                 int w = i[1];
@@ -27,9 +28,7 @@ class Solution {
                 }
             }
         }
-        for(boolean i : vis) {
-            if(i == false) return -1;
-        }
-        return time;
+        if(n == 0) return time;
+        return -1;
     }
 }
