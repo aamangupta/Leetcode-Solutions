@@ -26,10 +26,10 @@ class Solution {
         c2 = 0;
         for(int i : nums){
             if(i == val1) c1++;
-            if(i == val2) c2++;
+            else if(i == val2) c2++;
         }
         if(c1 > n/3) list.add(val1);
-        if(val1 == val2) return list;
+        // if(val1 == val2) return list;
         if(c2 > n/3) list.add(val2);
         return list;
     }
