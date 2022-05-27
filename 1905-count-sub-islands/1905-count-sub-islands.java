@@ -1,7 +1,14 @@
 class Solution {
+    
+    // simple dfs in grid2 and checking if ele at that idx is not 0 in grid1, 
+    // if it is 0 then change the flag and dont inc. the ans val
+    
     public void helper(int [][]arr, int i, int j, int [][]grid1){
         int n = arr.length, m = arr[0].length, box = i * m + j;
-        if(grid1[i][j] == 0) flag = true;
+        if(grid1[i][j] == 0){
+            flag = true;
+            return;
+        } 
         arr[i][j] = 0;
         int dir[] = {0,1,0,-1,0};
         for(int k = 0; k < 4; k++){
