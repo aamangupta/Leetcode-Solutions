@@ -1,5 +1,10 @@
 class Solution {
-    //LIS
+    //LIS's Variation
+    // like in LIS we are sorting the array acc to length
+    // now checking for every index and comparing it with all the previous 
+    // string if pre. str is a predecesoor of curr str or not 
+    //     if yes then update the dp[i] with max among them
+    //         also update the ans var.
     
     public boolean isPre(String s1, String s2){
         if(s1.length() != s2.length() + 1){
