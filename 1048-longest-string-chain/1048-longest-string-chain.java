@@ -1,10 +1,10 @@
 class Solution {
-    //LIS's Variation
-    // like in LIS we are sorting the array acc to length
-    // now checking for every index and comparing it with all the previous 
-    // string if pre. str is a predecesoor of curr str or not 
-    //     if yes then update the dp[i] with max among them
-    //         also update the ans var.
+
+    // here we are sorting
+    //     and iterating to every string in array
+    //     then checking all the subseq if it is presnt in the ref map
+    //         if yes then update the map
+    //     update the ans var
     
     public int longestStrChain(String[] words) {
         Arrays.sort(words, (a, b) -> {
