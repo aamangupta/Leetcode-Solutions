@@ -21,20 +21,46 @@ class Solution {
         Arrays.sort(words, (a, b) -> {
             return a.length() - b.length();
         });
+        
         int n = words.length, ans = 1, dp[] = new int[n];
-        Arrays.fill(dp, 1);
-        for(int i = 1; i < n; i++){
-            String str = words[i];
-            for(int j = 0; j < i; j++){
-                if(isPre(str, words[j])){
-                    dp[i] = Math.max(dp[i], 1 + dp[j]);
+        
+        HashMap<Integer, HashSet<String>> map = new HashMap<>();
+        for(String s : words){
+            HashSet<String> set = new HashSet<>();
+            int l = s.length();
+            if(map.containsKey(l) == false){
+                set.add(s);
+            }else{
+                set = map.get(l);
+                set.add(s);
+            }
+            map.put(l, set);
+        }
+        Map<String, Integer> ref = new HashMap<>();
+        for(String s : words) ref.put(s, 1);
+        for(String s : words){
+            int l = s.length();
+            if(map.containsKey(l - 1)){
+                HashSet<String> innerSet = map.get(l-1);
+                for(String s1 : innerSet){
+                    if(isPre(s, s1)){
+                        ref.put(s, Math.max(ref.get(s1) + 1, ref.get(s)));
+                    }
                 }
             }
-            ans = Math.max(dp[i], ans);
+            ans = Math.max(ref.get(s), ans);
         }
-        // for(int i = 0; i < n ;i++){
-        //     System.out.print(dp[i] + " ");
-        // }
         return ans;
+        // Arrays.fill(dp, 1);
+        // for(int i = 1; i < n; i++){
+        //     String str = words[i];
+        //     for(int j = 0; j < i; j++){
+        //         if(isPre(str, words[j])){
+        //             dp[i] = Math.max(dp[i], 1 + dp[j]);
+        //         }
+        //     }
+        //     ans = Math.max(dp[i], ans);
+        // }
+        // return ans;
     }
 }
