@@ -25,7 +25,7 @@ class Solution {
             for(int k = 0; k < n; k++){
                 if(list.size() < 3 && find(str, prod[k])){
                     list.add(prod[k]);
-                }
+                }if(list.size() == 3) break;
             }
             ans.add(list);
         }
