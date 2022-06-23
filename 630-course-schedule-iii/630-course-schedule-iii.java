@@ -1,4 +1,13 @@
 class Solution {
+    // here pq is max heap
+    // valid: in whihc the total dur. is in limit 
+    // else invalid
+    
+    // the main idea if adding the valid course in pq
+    // if a unvalid course occur then check the pq.peek()
+    // if it is less than curr course duration then swap these two
+    // return size of pq.
+    
     public int scheduleCourse(int[][] courses) {
         Arrays.sort(courses, (a, b) -> {
             return a[1] - b[1];
