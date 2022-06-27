@@ -1,5 +1,10 @@
 class MedianFinder {
 
+    // using two heaps:
+        // one is storing the first half of data (max heap) ex. [1,3,6,8]
+        // other is stroing the 2nd half (min heap) ex. [12,18,22,29]
+    // now add the num acc to the size of these heaps and return medium acc to the size
+    
     PriorityQueue<Integer> small, large;
     public MedianFinder() {
         small = new PriorityQueue<>(Collections.reverseOrder());
