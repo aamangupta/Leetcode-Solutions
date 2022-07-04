@@ -1,7 +1,4 @@
 class Solution {
-    // using dp array having no. of candy for ith child
-    // comparing the nbrs of current until every dp[i] value is not valid
-    // if at any pt value of dp[i] is not updated it means we got ans.
         
     public int candy(int[] ratings) {
         int sum = 0;
