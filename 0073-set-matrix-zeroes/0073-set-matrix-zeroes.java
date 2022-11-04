@@ -1,4 +1,5 @@
 class Solution {
+   // TC: O(nm) + O(n*n) = O(n^2)
     public class pair{
         int i;
         int j;
@@ -21,11 +22,10 @@ class Solution {
         for(pair p : list){
             int r = p.i, c = p.j;
             for(int i = 0 ; i < n; i++){
-                for(int j = 0; j < m; j++){
-                    if(i == r || j == c){
-                        matrix[i][j] = 0;
-                    }
-                }
+                matrix[i][c] = 0;                
+            }
+            for(int j = 0; j < m; j++){
+                matrix[r][j] = 0;
             }
         }
     }
